@@ -1,0 +1,24 @@
+<% filter_params = (request.parameters.present? and request.parameters[:filter].present?) ? request.parameters[:filter] : {}  %>
+<%= form_for :filter, url: products_path , method:"get", :html => {class:"form-inline"} do |f| %>
+  <div class="form-group">
+    <%= f.select(:brand_id,options_for_select(Brand.all.map{|brand|[brand.name, brand.id]}, filter_params[:brand_id]),{prompt: "Brand"},{:class => "form-control"})%>
+  </div>
+   <div class="form-group">
+    <%= f.select(:ram, options_for_select([1,2,3,4,5,6,7,8,9,10].map{|ram|[ram,ram]}, filter_params[:ram]),{prompt: "RAM"},{:class => "form-control"}) %>
+  </div>  
+  <div class="form-group">
+    <%= f.select(:year,options_for_select((2014.. 2018).map{ |year| [year, year]}, filter_params[:year]),{prompt:"Years"},{:class => "form-control "}) %>
+  </div>
+  <div class="form-group">
+    <%= f.select(:internal_storage, options_for_select([16, 32, 64, 128, 256].map{ |inter| [inter,inter]}, filter_params[:internal_storage]),{prompt: 'Internal Storage'} ,{:class => "form-control"}) %>
+  </div>
+  <div class="form-group">
+    <%= f.number_field(:from_price, :value => filter_params[:from_price], :step => 1, :class => "form-control", :placeholder => "From Price")%>
+  </div>
+  <div class="form-group">
+    <%= f.number_field(:to_price, :value => filter_params[:to_price], :step => 1, :class => "form-control", :placeholder => "From Price")%>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Submit", :class => "form-control" %>
+  </div>
+<%end%>

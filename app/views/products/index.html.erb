@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<%= render partial: 'products/filter' %>
+
+<div class="container" >
+  <%= link_to 'Download', products_path({format: "xlsx"}.merge(request.parameters)), :class => "download btn btn-primary"%>
+</div>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col" class="align-center" ="">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Model</th>
+      <th scope="col">Ram</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% index = params[:page].present? ? (params[:page].to_i - 1) * 25 + 1 : 1 %>
+    <% @products.each do |product| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= product.name %></td>
+        <td><%= product.model %></td>
+        <td><%= product.ram %></td>
+        <td>INR. <%= product.price %></td>
+        <% index += 1%>
+      </tr>
+      <!-- <tr>
+        <td><%#= link_to 'Show', product %></td>
+        <td><%#= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%#= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr> -->
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @products, params: request.parameters %>
+

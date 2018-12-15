@@ -16,7 +16,7 @@ module LiquidDiamonds
       :address        => 'smtp.gmail.com',
       :port           => 587,
       :domain         => 'mail.google.com',
-      :user_name      => 'mayank.testapp888@gmail.com',
+      :user_name      => 'mayankankit888@gmail.com',
       :password       => 'kitaana123',
       :authentication => 'login',
       :enable_starttls_auto => true

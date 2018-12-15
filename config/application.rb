@@ -18,7 +18,7 @@ module LiquidDiamonds
       :domain         => 'mail.google.com',
       :user_name      => 'mayankankit888@gmail.com',
       :password       => 'kitaana123',
-      :authentication => 'login',
+      :authentication => 'plain',
       :enable_starttls_auto => true
     }
   end
